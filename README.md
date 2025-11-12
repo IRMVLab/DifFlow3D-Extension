@@ -117,6 +117,7 @@ We sincerely appreciate the great contribution of the following works:
 - [NFL](https://research.nvidia.com/labs/toronto-ai/nfl/)
 - [K-Planes](https://github.com/sarafridov/K-Planes)
 
+We also appreciate the efforts of Zheng Huang from SJTU in helping conduct some of the experiments.
 
 ## Citation
 If you find our repo or paper helpful, feel free to support us with a star 🌟 or use the following citation:  
