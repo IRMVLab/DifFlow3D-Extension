@@ -1,69 +1,21 @@
-<div align="center">
-<h1><img src="https://github.com/ispc-lab/LiDAR4D/assets/51731102/7f3dd959-9b97-481e-8c13-45abbc2b712d" width=25%></h1>
+DifFlow3D: Hierarchical Diffusion Models for Uncertainty-Aware 3D Scene Flow Estimation
 
-<h3>LiDAR4D: Dynamic Neural Fields for Novel Space-time View LiDAR Synthesis</h3>  
-
-[Zehan Zheng](https://dyfcalid.github.io/), [Fan Lu](https://fanlu97.github.io/), Weiyi Xue, [Guang Chen](https://ispc-group.github.io/)†, Changjun Jiang  († Corresponding author)  
-**CVPR 2024**
+Jiuming Liu, Weicai Ye, Guangming Wang, Chaokang Jiang, Lei Pan, Jinru Han, Zhe Liu, Guofeng Zhang, and HeshengWang (Corresponding author)  
+**TPAMI 2025**
 
 
-**[Paper (arXiv)](https://arxiv.org/abs/2404.02742) | [Paper (CVPR)](https://openaccess.thecvf.com/content/CVPR2024/html/Zheng_LiDAR4D_Dynamic_Neural_Fields_for_Novel_Space-time_View_LiDAR_Synthesis_CVPR_2024_paper.html) | [Project Page](https://dyfcalid.github.io/LiDAR4D) | [Video](https://www.youtube.com/watch?v=E6XyG3A3EZ8) | [Poster](https://drive.google.com/file/d/13cf0rSjCjGRyBsYOcQSa6Qf1Oe1a5QCy/view?usp=sharing) | [Slides](https://drive.google.com/file/d/1Q6yTVGoBf_nfWR4rW9RcSGlxRMufmSXc/view?usp=sharing)**  
+**[Paper](https://ieeexplore.ieee.org/document/11230643)  
 
-This repository is the official PyTorch implementation for LiDAR4D.
+This repository is the official PyTorch implementation of **DifFlow3D for the 4D reconstruction task**.
 
-<img src="https://github.com/ispc-lab/LiDAR4D/assets/51731102/e23640bf-bd92-4ee0-88b4-375faf8c9b4d" width=50%>
-</div>
+## Changelog 
+2025-11-12:🚀 Code on 4D reconstruction is released. More implementation details about 3D scene flow estimation can be visited at https://github.com/IRMVLab/DifFlow3D.  
+2025-10-31:🎉 Our paper is accepted by TPAMI 2025.  
 
-<!-- TABLE OF CONTENTS -->
-<details open="open" style='padding: 10px; border-radius:5px 30px 30px 5px; border-style: solid; border-width: 1px;'>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#changelog">Changelog</a>
-    </li>
-    <li>
-      <a href="#demo">Demo</a>
-    </li>
-    <li>
-      <a href="#introduction">Introduction</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting started</a>
-    </li>
-    <li>
-      <a href="#results">Results</a>
-    </li>
-    <li>
-      <a href="#simulation">Simulation</a>
-    </li>
-    <li>
-      <a href="#citation">Citation</a>
-    </li>
-  </ol>
-</details>
-
-
-## Changelog
-2024-6-1:🕹️ We release the simulator for easier rendering and manipulation. *Happy Children's Day and Have Fun!*   
-2024-5-4:📈 We update flow fields and improve temporal interpolation.   
-2024-4-13:📈 We update U-Net of LiDAR4D for better ray-drop refinement.   
-2024-4-5:🚀 Code of LiDAR4D is released.  
-2024-4-4:🔥 You can reach the preprint paper on arXiv as well as the project page.  
-2024-2-27:🎉 Our paper is accepted by CVPR 2024.  
-
-
-## Demo
-<video src="https://github.com/ispc-lab/LiDAR4D/assets/51731102/34f898ec-404d-4f10-afe5-1e471df2cfe2"></video>
-
-
-## Introduction
-<img src="https://github.com/ispc-lab/LiDAR4D/assets/51731102/42083b63-2459-4eb9-bb8f-651eca0a1148" width=90%>  
-
-LiDAR4D is a differentiable LiDAR-only framework for novel space-time LiDAR view synthesis, which reconstructs dynamic driving scenarios and generates realistic LiDAR point clouds end-to-end. It adopts 4D hybrid neural representations and motion priors derived from point clouds for geometry-aware and time-consistent large-scale scene reconstruction.
 
 
 ## Getting started
-
+We follow LiDAR4D (CVPR2024) to establish 4D reconstruction baseline.
 
 ### 🛠️ Installation
 
@@ -145,7 +97,7 @@ data
     └── transforms_{sequence_id}val.json
 ```
 
-### 🚀 Run LiDAR4D
+### 🚀 Run
 
 Set corresponding sequence config path in `--config` and you can modify logging file path in `--workspace`. Remember to set available GPU ID in `CUDA_VISIBLE_DEVICES`.   
 Run the following command:
@@ -281,22 +233,11 @@ bash run_kitti_lidar4d.sh
 
 <a id="simulation"></a>
 
-## 🕹️ Simulation
-<img src="https://github.com/ispc-lab/LiDAR4D/assets/51731102/ada49a62-8b53-47fe-8cc0-4d99af1ebad8" width=75%>  
-<!-- <img src="https://github.com/ispc-lab/LiDAR4D/assets/51731102/1b34a7b4-4238-470a-acfd-499fe697e3d1" width=75%>   -->
-
-After reconstruction, you can use the simulator to render and manipulate LiDAR point clouds in the whole scenario. It supports dynamic scene re-play, novel LiDAR configurations (`--fov_lidar`, `--H_lidar`, `--W_lidar`) and novel trajectory (`--shift_x`, `--shift_y`, `--shift_z`).  
-We also provide a simple demo setting to transform LiDAR configurations from KITTI-360 to NuScenes, using `--kitti2nus` in the bash script.    
-Check the sequence config and corresponding workspace and model path (`--ckpt`).  
-Run the following command:
-```bash
-bash run_kitti_lidar4d_sim.sh
-```
-The results will be saved in the workspace folder.
 
 
 ## Acknowledgement
 We sincerely appreciate the great contribution of the following works:
+- [LiDAR4D](https://github.com/ispc-lab/LiDAR4D)
 - [tiny-cuda-nn](https://github.com/NVlabs/tiny-cuda-nn/tree/master)
 - [LiDAR-NeRF](https://github.com/tangtaogo/lidar-nerf)
 - [NFL](https://research.nvidia.com/labs/toronto-ai/nfl/)
@@ -306,12 +247,16 @@ We sincerely appreciate the great contribution of the following works:
 ## Citation
 If you find our repo or paper helpful, feel free to support us with a star 🌟 or use the following citation:  
 ```bibtex
-@inproceedings{zheng2024lidar4d,
-  title     = {LiDAR4D: Dynamic Neural Fields for Novel Space-time View LiDAR Synthesis},
-  author    = {Zheng, Zehan and Lu, Fan and Xue, Weiyi and Chen, Guang and Jiang, Changjun},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year      = {2024}
-  }
+@ARTICLE{11230643,
+  author={Liu, Jiuming and Ye, Weicai and Wang, Guangming and Jiang, Chaokang and Pan, Lei and Han, Jinru and Liu, Zhe and Zhang, Guofeng and Wang, Hesheng},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={DifFlow3D: Hierarchical Diffusion Models for Uncertainty-Aware 3D Scene Flow Estimation}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-18},
+  keywords={Estimation;Diffusion models;Uncertainty;Three-dimensional displays;Laser radar;Dynamics;Reliability;Point cloud compression;Probabilistic logic;Noise reduction;Scene flow estimation;Diffusion model;Uncertainty evaluation;4D reconstruction;Dynamic LiDAR synthesis},
+  doi={10.1109/TPAMI.2025.3629570}}
 ```
 
 
